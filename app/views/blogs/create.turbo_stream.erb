@@ -1,0 +1,2 @@
+<%= turbo_stream.append "blogs", @blog %>
+<%= turbo_stream.replace "new_blog", partial: "form", locals: { blog: Blog.new } %>

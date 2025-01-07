@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <% content_for :title, "Blogs" %>
+<%= turbo_frame_tag id = "new_blog", src: new_blog_path %>
 
 <h1>Blogs</h1>
 
@@ -8,9 +9,30 @@
   <% @blogs.each do |blog| %>
     <%= render blog %>
     <p>
-      <%= link_to "Show this blog", blog %>
+      <%#= link_to "Show this blog", blog %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New blog", new_blog_path %>
+<div id="blogs">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @blogs.each do |blog| %>
+        <tr>
+          <td><%= blog.title %></td>
+          <td><%= truncate(blog.body, length: 50) %></td>
+          <td>
+            <%= link_to "Show", blog, class: "btn btn-primary btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

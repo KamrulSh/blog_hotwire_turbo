@@ -25,6 +25,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
+        format.turbo_stream
         format.html { redirect_to @blog, notice: "Blog was successfully created." }
         format.json { render :show, status: :created, location: @blog }
       else
